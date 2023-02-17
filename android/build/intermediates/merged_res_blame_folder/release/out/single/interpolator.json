@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/fast_out_slow_in.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/fast_out_slow_in.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_radio_to_on_mtrl_animation_interpolator_0.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_radio_to_on_mtrl_animation_interpolator_0.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_radio_to_off_mtrl_animation_interpolator_0.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_radio_to_off_mtrl_animation_interpolator_0.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_0.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_0.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_0.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_0.xml"
+    }
+]

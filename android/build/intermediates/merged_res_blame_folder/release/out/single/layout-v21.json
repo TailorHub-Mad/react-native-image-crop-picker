@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-v21/notification_action.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/layout-v21/notification_action_tombstone.xml"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/xml/rn_dev_preferences.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/551f8c8e72dbfaba436db89d9ea8122f/transformed/jetified-react-native-0.69.7-release/res/xml/rn_dev_preferences.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/xml/provider_paths.xml",
+        "source": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/src/main/res/xml/provider_paths.xml"
+    }
+]

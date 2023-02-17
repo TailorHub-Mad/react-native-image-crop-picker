@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b67bf07d0e6b938dee2f9316f5fef4d2/transformed/appcompat-1.4.1/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/menu/example_menu.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/menu/example_menu.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/menu/ucrop_menu_activity.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b4cc3d7e863f86b38d7477071b4695b2/transformed/jetified-ucrop-2.2.6-native/res/menu/ucrop_menu_activity.xml"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/menu/example_menu2.xml",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/61b7a8ae1182ce233ca54e9c675b993a/transformed/core-1.7.0/res/menu/example_menu2.xml"
+    }
+]

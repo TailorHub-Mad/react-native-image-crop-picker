@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/drawable-ldpi-v4/ucrop_ic_angle.png",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b4cc3d7e863f86b38d7477071b4695b2/transformed/jetified-ucrop-2.2.6-native/res/drawable-ldpi-v4/ucrop_ic_angle.png"
+    },
+    {
+        "merged": "/Users/diegomendezp/Tailor/caixaforum/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_res/release/drawable-ldpi-v4/ucrop_ic_done.png",
+        "source": "/Users/diegomendezp/.gradle/caches/transforms-3/b4cc3d7e863f86b38d7477071b4695b2/transformed/jetified-ucrop-2.2.6-native/res/drawable-ldpi-v4/ucrop_ic_done.png"
+    }
+]
