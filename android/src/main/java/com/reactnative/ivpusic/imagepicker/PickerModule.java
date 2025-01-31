@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,6 +19,8 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -42,6 +45,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -231,12 +235,12 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         List<String> missingPermissions = new ArrayList<>();
         List<String> supportedPermissions = new ArrayList<>(requiredPermissions);
 
-         // android 11 introduced scoped storage, and WRITE_EXTERNAL_STORAGE no longer works there
+        // android 11 introduced scoped storage, and WRITE_EXTERNAL_STORAGE no longer works there
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
             supportedPermissions.remove(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
 
-        for (String permission : requiredPermissions) {
+        for (String permission : supportedPermissions) {
             int status = ActivityCompat.checkSelfPermission(activity, permission);
             if (status != PackageManager.PERMISSION_GRANTED) {
                 missingPermissions.add(permission);
@@ -257,12 +261,10 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
                             if (grantResult == PackageManager.PERMISSION_DENIED) {
                                 if (permission.equals(Manifest.permission.CAMERA)) {
-                                    promise.reject(E_NO_CAMERA_PERMISSION_KEY, "camera");
-                                
+                                    promise.reject(E_NO_CAMERA_PERMISSION_KEY, E_NO_CAMERA_PERMISSION_MSG);
                                 } else if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                    promise.reject(E_NO_LIBRARY_PERMISSION_KEY, "external");
-                                } 
-                                else {
+                                    promise.reject(E_NO_LIBRARY_PERMISSION_KEY, E_NO_LIBRARY_PERMISSION_MSG);
+                                } else {
                                     // should not happen, we fallback on E_NO_LIBRARY_PERMISSION_KEY rejection for minimal consistency
                                     promise.reject(E_NO_LIBRARY_PERMISSION_KEY, "Required permission missing");
                                 }
@@ -309,7 +311,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         setConfiguration(options);
         resultCollector.setup(promise, false);
 
-        permissionsCheck(activity, promise, Arrays.asList(Manifest.permission.CAMERA), new Callable<Void>() {
+        permissionsCheck(activity, promise, Arrays.asList(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), new Callable<Void>() {
             @Override
             public Void call() {
                 initiateCamera(activity);
@@ -364,28 +366,32 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private void initiatePicker(final Activity activity) {
         try {
-            final Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            PickVisualMediaRequest.Builder builder = new PickVisualMediaRequest.Builder();
+            PickVisualMediaRequest request = new PickVisualMediaRequest();
 
             if (cropping || mediaType.equals("photo")) {
-                galleryIntent.setType("image/*");
+                request = builder.setMediaType(new ActivityResultContracts.PickVisualMedia.SingleMimeType("image/*")).build();
+            }
+            else{
                 if (cropping) {
-                    String[] mimetypes = {"image/jpeg", "image/png"};
-                    galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+                    request = builder.setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build();
                 }
-            } else if (mediaType.equals("video")) {
-                galleryIntent.setType("video/*");
+             else if (mediaType.equals("video")) {
+                request = builder.setMediaType(ActivityResultContracts.PickVisualMedia.VideoOnly.INSTANCE).build();
             } else {
-                galleryIntent.setType("*/*");
-                String[] mimetypes = {"image/*", "video/*"};
-                galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+                    request = builder.setMediaType(ActivityResultContracts.PickVisualMedia.ImageAndVideo.INSTANCE).build();
+                }
             }
 
-            galleryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, multiple);
-            galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+            Intent intent;
 
-            final Intent chooserIntent = Intent.createChooser(galleryIntent, "Pick an image");
-            activity.startActivityForResult(chooserIntent, IMAGE_PICKER_REQUEST);
+            if (multiple) {
+                intent = new ActivityResultContracts.PickMultipleVisualMedia().createIntent(activity, request);
+            } else {
+                intent = new ActivityResultContracts.PickVisualMedia().createIntent(activity, request);
+            }
+
+            activity.startActivityForResult(intent, IMAGE_PICKER_REQUEST);
         } catch (Exception e) {
             resultCollector.notifyProblem(E_FAILED_TO_SHOW_PICKER, e);
         }
@@ -403,7 +409,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         setConfiguration(options);
         resultCollector.setup(promise, multiple);
 
-        permissionsCheck(activity, promise, Collections.singletonList(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ? Manifest.permission.WRITE_EXTERNAL_STORAGE : Manifest.permission.READ_MEDIA_IMAGES), new Callable<Void>() {
+        permissionsCheck(activity, promise, Collections.singletonList(Manifest.permission.WRITE_EXTERNAL_STORAGE), new Callable<Void>() {
             @Override
             public Void call() {
                 initiatePicker(activity);
@@ -785,7 +791,16 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
             } else {
                 Uri uri = data.getData();
 
+                // if the result comes in clipData format (which apparently it does in some cases)
                 if (uri == null) {
+                    ClipData clipData = data.getClipData();
+                    if (clipData != null && clipData.getItemCount() > 0) {
+                        ClipData.Item item = clipData.getItemAt(0);
+                        uri = item.getUri();
+                    }
+                }
+                // error out if uri is still null
+                if(uri == null) {
                     resultCollector.notifyProblem(E_NO_IMAGE_DATA_FOUND, "Cannot resolve image url");
                     return;
                 }
